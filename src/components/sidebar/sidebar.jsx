@@ -7,7 +7,7 @@ export default function Sidebar() {
       <nav className="space-y-3 text-sm text-gray-700">
         
         <div>
-          <Link to='/'>
+          <Link to='/home'>
           
           🏠 Home
           
@@ -41,14 +41,7 @@ export default function Sidebar() {
           </Link>
           
           </div>
-          <div>
-          <Link to='/login'>
           
-          👤 Login
-          
-          </Link>
-          
-          </div>
       
       </nav>
     </div>
