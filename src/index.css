@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+:root {
+  /* Light mode defaults */
+  --bg-primary: #ffffff;
+  --text-primary: #333333;
+  --sidebar-bg: #f5f5f5;
+  --card-bg: #f9f9f9;
+  --button-bg: #e0e0e0;
+  --card-text: #333333;
+  /* Quick Actions specific */
+  --card-action-bg: #f0f0f0;
+  --action-icon: #4f46e5;
+  --text-secondary: #000000;
+  /* Changed to pure black */
+  --text-tertiary: #333333;
+  /* Dark gray for descriptions */
+  /* New variables for Quick Actions fix */
+  --quick-actions-text: #000000;
+  --quick-actions-desc: #333333;
+}
+
+.dark {
+  /* Dark mode overrides */
+  --bg-primary: #1a1a1a;
+  --text-primary: #f0f0f0;
+  --sidebar-bg: #2d2d2d;
+  --card-bg: #252525;
+  --button-bg: #3d3d3d;
+  --card-text: #f0f0f0;
+  /* Quick Actions specific */
+  --card-action-bg: #2d2d2d;
+  --action-icon: #a78bfa;
+  --text-secondary: #f0f0f0;
+  --text-tertiary: #cccccc;
+  /* New variables for Quick Actions fix */
+  --quick-actions-text: #f0f0f0;
+  --quick-actions-desc: #cccccc;
+}
+
+/* Base styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===== QUICK ACTIONS FIX ===== */
+.quick-actions-container .text-primary {
+  color: var(--quick-actions-text) !important;
+}
+
+.quick-actions-container .text-secondary {
+  color: var(--quick-actions-desc) !important;
+}
+
+/* Component styles */
+.sidebar {
+  background-color: var(--sidebar-bg);
+}
+
+.note-card,
+.recent-notes,
+.my-solution,
+.access-notes {
+  background-color: var(--card-bg);
+  color: var(--card-text);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+/* Quick Actions */
+.quick-actions-container {
+  margin-bottom: 1.5rem;
+}
+
+.bg-card-action {
+  background-color: var(--card-action-bg);
+}
+
+/* Folders */
+.folders-card {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Force dark text in light mode for folders */
+:root:not(.dark) .folders-card,
+:root:not(.dark) .folders-card * {
+  color: #333333 !important;
+}
+
+/* Tasks */
+.tasks-card {
+  background-color: var(--card-bg);
+}
+
+/* Text Utilities */
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+
+/* Button styles */
+button {
+  background-color: var(--button-bg);
+  color: var(--text-primary);
+}
+
+/* Utilities */
+.min-h-screen {
+  background-color: inherit;
+}
+
+/* ===== DELAYS ENDS SECTION FIX ===== */
+/* Light mode */
+.delays-ends-section {
+  color: #000000 !important;
+  /* Pure black text */
+}
+
+.delays-ends-section strong {
+  color: #000000 !important;
+  /* Bold items */
+}
+
+/* Dark mode override */
+.dark .delays-ends-section,
+.dark .delays-ends-section strong {
+  color: #f0f0f0 !important;
+  /* Light gray */
+}
+
+
+/* ===== TODAY'S TASKS FIX ===== */
+.tasks-container {
+  color: #000000 !important;
+  /* Force black text */
+}
+
+.tasks-container li,
+.tasks-container strong {
+  color: inherit !important;
+  /* Inherit from parent */
+}
+
+.dark .tasks-container,
+.dark .tasks-container li {
+  color: #f0f0f0 !important;
+  /* Light text in dark mode */
+}
+
+/* ===== RECENT NOTES FIX ===== */
+.recent-notes {
+  color: #000000 !important;
+  /* Force black text */
+}
+
+.recent-notes p,
+.recent-notes div {
+  color: inherit !important;
+}
+
+.dark .recent-notes {
+  color: #f0f0f0 !important;
+  /* Light text in dark mode */
+}
+
+/* === VISIBILITY FIX (ADD THIS LAST) === */
+.force-visible-text,
+.force-visible-text .text-primary,
+.force-visible-text .text-secondary,
+.force-visible-text .text-tertiary {
+  color: var(--text-primary) !important;
+}
+
+.force-visible-text .text-secondary {
+  opacity: 0.9;
+}
+
+.force-visible-text .text-tertiary {
+  opacity: 0.7;
+}
+
+/* === LIGHT MODE TEXT FIX (SAFE TO KEEP) === */
+:root:not(.dark) .tasks-card,
+:root:not(.dark) .recent-notes-card {
+  --text-primary: #000000;
+  /* Pure black */
+  --text-secondary: #333333;
+  /* Dark gray */
+  --text-tertiary: #555555;
+  /* Medium gray */
+}
+
+/* === DARK MODE FIX === */
+.dark .quick-actions,
+.dark .tasks-card,
+.dark .recent-notes-card {
+  --text-primary: #f0f0f0 !important;
+  /* Bright white */
+  --text-secondary: #cccccc !important;
+  /* Light gray */
+  --text-tertiary: #aaaaaa !important;
+  /* Medium gray */
+}
+
+/* Force visibility in cards */
+.dark .tasks-card,
+.dark .recent-notes-card {
+  background-color: #252525 !important;
+  /* Slightly lighter than full black */
+}
+
+/* === SIDEBAR DARK MODE FIX === */
+.dark .sidebar {
+  background-color: #121212 !important;
+  /* Pure black */
+  color: #ffffff !important;
+  /* White text */
+}
+
+.dark .sidebar *:not(.active-item) {
+  color: inherit !important;
+  /* Force all text white */
+}
