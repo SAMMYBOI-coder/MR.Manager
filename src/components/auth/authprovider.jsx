@@ -1,20 +1,28 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-// Create context
 const AuthContext = createContext();
 
-// Provider component
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
-  const login = () => {
+  useEffect(() => {
+    // Check for token presence on mount to persist login
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const login = (token) => {
+    localStorage.setItem("authToken", token);
     setIsAuthenticated(true);
-    navigate("/home"); // or your main dashboard route
+    navigate("/home");
   };
 
   const logout = () => {
+    localStorage.removeItem("authToken");
     setIsAuthenticated(false);
     navigate("/");
   };
@@ -26,5 +34,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use AuthContext
 export const useAuth = () => useContext(AuthContext);
