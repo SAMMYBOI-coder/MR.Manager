@@ -1,15 +1,29 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Landing() {
   const [showOptions, setShowOptions] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if user is authenticated (simple check for token presence)
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      // If logged in, redirect to /home immediately
+      navigate("/home");
+    }
+  }, [navigate]);
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <div className="flex flex-col items-center justify-center py-16 px-6">
-        <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-center">
-          📝 Welcome to NoteMaster
-        </h1>
+        {/* Logo/Header text links dynamically based on auth */}
+        <Link to={localStorage.getItem("authToken") ? "/home" : "/"}>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-center cursor-pointer">
+            📝 Welcome to Mr.Manager
+          </h1>
+        </Link>
+
         <p className="text-lg text-center mb-8 max-w-xl">
           Organize your thoughts, tasks, and events all in one place — fast, simple, and distraction-free.
         </p>
@@ -37,7 +51,7 @@ export default function Landing() {
         )}
       </div>
 
-      {/* ✅ Your original landing page sections go here */}
+      {/* Features Section */}
       <section className="px-6 py-10 text-center">
         <h2 className="text-2xl font-semibold mb-4">📚 Features</h2>
         <ul className="space-y-3 max-w-md mx-auto">
@@ -49,7 +63,7 @@ export default function Landing() {
       </section>
 
       <footer className="text-center text-sm opacity-70 py-6">
-        Made with ❤️ by Sam • © {new Date().getFullYear()}
+        Made with ❤️ by Sanjay • © {new Date().getFullYear()}
       </footer>
     </div>
   );
